@@ -12,8 +12,10 @@ test('Login com sucesso no SauceDemo', async ({ page }) => {
   // Preenche e envia
   await campoUsuario.fill('standard_user');
   await campoSenha.fill('secret_sauce');
+  await page.waitForTimeout(3000);
   await botaoLogin.click();
 
   // Valida se entrou
   await expect(page.locator('.title')).toHaveText('Products');
+  await page.waitForTimeout(3000);
 });
