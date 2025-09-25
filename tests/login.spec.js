@@ -1,21 +1,21 @@
 const { test, expect } = require('@playwright/test');
 
-test('Login com sucesso no SauceDemo', async ({ page }) => {
-  // Acessa a página
+test('Successful login to SauceDemo', async ({ page }) => {
+  // Navigate to the page
   await page.goto('https://www.saucedemo.com/');
 
-  // Mapeamento de elementos
-  const campoUsuario = page.locator('#user-name');
-  const campoSenha = page.locator('#password');
-  const botaoLogin = page.locator('#login-button');
+  // Element mapping
+  const usernameField = page.locator('#user-name');
+  const passwordField = page.locator('#password');
+  const loginButton = page.locator('#login-button');
 
-  // Preenche e envia
-  await campoUsuario.fill('standard_user');
-  await campoSenha.fill('secret_sauce');
+  // Fill and submit
+  await usernameField.fill('standard_user');
+  await passwordField.fill('secret_sauce');
   await page.waitForTimeout(3000);
-  await botaoLogin.click();
+  await loginButton.click();
 
-  // Valida se entrou
+  // Validate successful login
   await expect(page.locator('.title')).toHaveText('Products');
   await page.waitForTimeout(3000);
 });
